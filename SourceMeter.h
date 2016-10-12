@@ -27,13 +27,18 @@ public:
 	double GetBiasVoltage(int smuX);
 	int GetUD();
 
-	void Initialize(int masterUD, int pad, double biasVoltageA, double biasVoltageB);
+	void Initialize(int masterUD, int pad);
+	void InitializeCurrentSource(int masterUD, int pad, string voltagelimit);
+
 	void ResetDevice();
 	void ResetChannel(int smuX);
-	void SelectSourceFunction(int smuX, bool voltage= true);
+	void SelectVoltageFunction(int smuX);
+	void SelectCurrentFunction(int smuX);
 	void SetOutputOnOff(int smuX, bool On = true);
-	void SelectRange(int smuX, string range, bool voltage = true);
-	void SetLimit(int smuX, string limit, bool voltage = true);
+	void SelectCurrentRange(int smuX, string range);
+	void SelectVoltageRange(int smuX, string range);
+	void SetCurrentLimit(int smuX, string limit);
+	void SetVoltageLimit(int smuX, string limit);
 
 	double GetSourceVoltage(int smuX);
 	void SetSourceVoltage(int smuX, string level);

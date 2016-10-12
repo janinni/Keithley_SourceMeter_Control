@@ -20,10 +20,10 @@ int main(int argc, char const *argv[])
 
 	SourceMeter* Keithley = new SourceMeter();
 
-	Keithley->Initialize(masterUD, 26, 10, 10);
+	Keithley->Initialize(masterUD, 26);
 
-	Keithley->SelectSourceFunction(1, false);
-	Keithley->SetLimit(1,"2", true);	
+	Keithley->SelectCurrentFunction(1);
+	Keithley->SetVoltageLimit(1,"2");	
 
 	Keithley->SetOutputOnOff(1,true);
 	Keithley->SetSourceCurrent(1, "0.2");
