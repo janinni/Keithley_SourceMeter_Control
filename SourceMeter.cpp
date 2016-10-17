@@ -30,15 +30,7 @@ SourceMeter::SourceMeter()
   _outputStatusA = 0; // Output A is switched off
   _outputStatusB = 0; // Output B is switched off
 
-  // verbosity
-  _verbosity = 0;
-
-  // bias and actual voltages for Output A
-  _biasVoltageA = 0;
   _actualVoltageA = 0.;
-
-  // bias and actual voltages for Output B
-  _biasVoltageB = 0;
   _actualVoltageB = 0.;
 
   _actualCurrentA =0.;
@@ -526,14 +518,14 @@ void SourceMeter::SetSourceVoltage(int smuX, string level){
 double SourceMeter::GetSourceCurrent(int smuX){
 
 
-	if (smuX ==1)
+	if (smuX == 1)
 	{
 		int returnval = ibwrt_string(this->_ud, "print(smua.source.leveli)");
 		this->_actualCurrentA = ibrd_double(this->_ud);
 		cout << "Read current level SMUA: " << this->_actualCurrentA << "A: " << returnval << endl;
 		return this->_actualCurrentA;
 	}
-	else if (smuX ==2)
+	else if (smuX == 2)
 	{
 		int returnval = ibwrt_string(this->_ud, "print(smub.source.leveli)");
 		this->_actualCurrentB = ibrd_double(this->_ud);
@@ -611,7 +603,89 @@ vector<double> SourceMeter::MeasureIV(int smuX){
 	}
 
 	else {
-    cout << "SourceMeter::MeasureCurrent(int smuX) - incorrect SMU!\n" << endl;
+    cout << "SourceMeter::MeasureIV(int smuX) - incorrect SMU!\n" << endl;
+    exit (EXIT_FAILURE);
+	}
+
+}
+
+double SourceMeter::MeasureI(int smuX){
+
+	double curr;
+
+	if (smuX ==1)
+	{
+		int returnval = ibwrt_string(this->_ud, "print(smua.measure.i())");
+	
+		ibrd(this->_ud, this->_readA, 70);
+
+		stringstream ss;
+		ss << this->_readA;
+		ss >> curr;
+
+		cout << "Measured I: " << curr << "A " << returnval << endl;
+
+		return curr;
+
+	}
+	else if (smuX ==2)
+	{
+		int returnval = ibwrt_string(this->_ud, "print(smub.measure.i())");
+		
+		ibrd(this->_ud, this->_readB, 70);
+
+		stringstream ss;
+		ss << this->_readB;
+		ss >> curr;
+
+		cout << "Measured I: " << curr << "A " << returnval << endl;
+
+		return curr;
+	}
+
+	else {
+    cout << "SourceMeter::MeasureI(int smuX) - incorrect SMU!\n" << endl;
+    exit (EXIT_FAILURE);
+	}
+
+}
+
+double SourceMeter::MeasureV(int smuX){
+
+	double volt;
+
+	if (smuX ==1)
+	{
+		int returnval = ibwrt_string(this->_ud, "print(smua.measure.v())");
+	
+		ibrd(this->_ud, this->_readA, 70);
+
+		stringstream ss;
+		ss << this->_readA;
+		ss >> volt;
+
+		cout << "Measured V: " << volt << "V " << returnval << endl;
+
+		return volt;
+
+	}
+	else if (smuX ==2)
+	{
+		int returnval = ibwrt_string(this->_ud, "print(smub.measure.v())");
+		
+		ibrd(this->_ud, this->_readB, 70);
+
+		stringstream ss;
+		ss << this->_readB;
+		ss >> volt;
+
+		cout << "Measured V: " << volt << "V " << returnval << endl;
+
+		return volt;
+	}
+
+	else {
+    cout << "SourceMeter::MeasureV(int smuX) - incorrect SMU!\n" << endl;
     exit (EXIT_FAILURE);
 	}
 

@@ -45,6 +45,8 @@ public:
 	double GetSourceCurrent(int smuX);
 	void SetSourceCurrent(int smuX, string level);
 
+	double MeasureI(int smuX);
+	double MeasureV(int smuX);
 	vector<double> MeasureIV(int smuX);
 	void WriteMeasurementToFile(vector<double> measurement);
 
