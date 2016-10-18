@@ -13,8 +13,7 @@ Created by Janine Müller on 05.10.2016
 
 #include <string>
 #include <vector>
-
-using namespace std;
+#include "../LogFileDev/LogDev.h"
 
 class SourceMeter
 {
@@ -24,48 +23,36 @@ public:
 
 	bool GetOutputStatus(int smuX);
 	double GetActualVoltage(int smuX);
-	double GetBiasVoltage(int smuX);
 	int GetUD();
 
 	void Initialize(int masterUD, int pad);
-	void InitializeCurrentSource(int masterUD, int pad, string voltagelimit);
 
 	void ResetDevice();
 	void ResetChannel(int smuX);
 	void SelectVoltageFunction(int smuX);
 	void SelectCurrentFunction(int smuX);
 	void SetOutputOnOff(int smuX, bool On = true);
-	void SelectCurrentRange(int smuX, string range);
-	void SelectVoltageRange(int smuX, string range);
-	void SetCurrentLimit(int smuX, string limit);
-	void SetVoltageLimit(int smuX, string limit);
+	void SelectCurrentRange(int smuX, std::string range);
+	void SelectVoltageRange(int smuX, std::string range);
+	void SetCurrentLimit(int smuX, std::string limit);
+	void SetVoltageLimit(int smuX, std::string limit);
 
 	double GetSourceVoltage(int smuX);
-	void SetSourceVoltage(int smuX, string level);
+	void SetSourceVoltage(int smuX, std::string level);
 	double GetSourceCurrent(int smuX);
-	void SetSourceCurrent(int smuX, string level);
+	void SetSourceCurrent(int smuX, std::string level);
 
 	double MeasureI(int smuX);
 	double MeasureV(int smuX);
-	vector<double> MeasureIV(int smuX);
-	void WriteMeasurementToFile(vector<double> measurement);
+	std::vector<double> MeasureIV(int smuX);
 
 private:
 	bool _outputStatusA; 
 	bool _outputStatusB;
 
-	// verbosity
-	bool _verbosity;
-
-	// bias and actual source voltages for Output A
-	double _biasVoltageA;
 	double _actualVoltageA;
-
-	// bias and actual source voltages for Output B
-	double _biasVoltageB;
 	double _actualVoltageB;
 
-	// source current
 	double _actualCurrentA;
 	double _actualCurrentB;
 
@@ -73,6 +60,8 @@ private:
 
 	char _readA[70];
 	char _readB[70];
+
+	LogDev _LogFile;
 
 
 };
