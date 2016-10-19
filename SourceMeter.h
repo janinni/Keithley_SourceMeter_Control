@@ -32,15 +32,15 @@ public:
 	void SelectVoltageFunction(int smuX);
 	void SelectCurrentFunction(int smuX);
 	void SetOutputOnOff(int smuX, bool On = true);
-	void SelectCurrentRange(int smuX, std::string range);
-	void SelectVoltageRange(int smuX, std::string range);
-	void SetCurrentLimit(int smuX, std::string limit);
-	void SetVoltageLimit(int smuX, std::string limit);
+	void SelectCurrentRange(int smuX, const std::string range);
+	void SelectVoltageRange(int smuX, const std::string range);
+	void SetCurrentLimit(int smuX, const std::string limit);
+	void SetVoltageLimit(int smuX, const std::string limit);
 
 	double GetSourceVoltage(int smuX);
-	void SetSourceVoltage(int smuX, std::string level);
+	void SetSourceVoltage(int smuX, const std::string level);
 	double GetSourceCurrent(int smuX);
-	void SetSourceCurrent(int smuX, std::string level);
+	void SetSourceCurrent(int smuX, const std::string level);
 
 	double MeasureI(int smuX);
 	double MeasureV(int smuX);

@@ -82,6 +82,8 @@ int SourceMeter::GetUD(){
 }
 
 void SourceMeter::Initialize(int masterUD, int pad){
+	
+	this->_LogFile.Initialize("SourceMeter");
 
 	cout << "START SourceMeter::Initialize" << endl;
 	cout << "-----------------------------" << endl;
@@ -302,7 +304,7 @@ void SourceMeter::SetOutputOnOff(int smuX, bool On){
 
 // smuX =1 channel A, smuX=2 channel B, in volt
 // selects source range of voltage
-void SourceMeter::SelectVoltageRange(int smuX, string range){
+void SourceMeter::SelectVoltageRange(int smuX, const string range){
 
 	string command;
 	stringstream out;
@@ -335,7 +337,7 @@ void SourceMeter::SelectVoltageRange(int smuX, string range){
 
 // smuX =1 channel A, smuX=2 channel B, in volt
 // selects source range of current
-void SourceMeter::SelectCurrentRange(int smuX, string range){
+void SourceMeter::SelectCurrentRange(int smuX, const string range){
 
 	string command;
 	stringstream out;
@@ -368,7 +370,7 @@ void SourceMeter::SelectCurrentRange(int smuX, string range){
 
 
 // smuX =1 channel A, smuX=2 channel B
-void SourceMeter::SetCurrentLimit(int smuX, string limit){
+void SourceMeter::SetCurrentLimit(int smuX, const string limit){
 
 	string command;
 	stringstream out;
@@ -399,7 +401,7 @@ void SourceMeter::SetCurrentLimit(int smuX, string limit){
 }
 
 // smuX =1 channel A, smuX=2 channel B
-void SourceMeter::SetVoltageLimit(int smuX, string limit){
+void SourceMeter::SetVoltageLimit(int smuX, const string limit){
 
 	string command;
 	stringstream out;
@@ -459,7 +461,7 @@ double SourceMeter::GetSourceVoltage(int smuX){
 }
 
 // smuX =1 channel A, smuX=2 channel B
-void SourceMeter::SetSourceVoltage(int smuX, string level){
+void SourceMeter::SetSourceVoltage(int smuX, const string level){
 
 	string command;
 	stringstream out;
@@ -523,7 +525,7 @@ double SourceMeter::GetSourceCurrent(int smuX){
 }
 
 // smuX =1 channel A, smuX=2 channel B
-void SourceMeter::SetSourceCurrent(int smuX, string level){
+void SourceMeter::SetSourceCurrent(int smuX, const string level){
 
 	string command;
 	stringstream out;
