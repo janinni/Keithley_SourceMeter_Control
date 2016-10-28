@@ -24,6 +24,7 @@ public:
 	bool GetOutputStatus(int smuX);
 	double GetActualVoltage(int smuX);
 	int GetUD();
+	LogDev& GetLogFile();
 
 	void Initialize(int masterUD, int pad);
 

@@ -81,6 +81,11 @@ int SourceMeter::GetUD(){
 	return _ud;
 }
 
+LogDev& SourceMeter::GetLogFile(){
+
+	return this->_LogFile;
+}
+
 void SourceMeter::Initialize(int masterUD, int pad){
 	
 	this->_LogFile.Initialize("SourceMeter");
