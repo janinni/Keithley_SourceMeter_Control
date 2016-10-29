@@ -88,7 +88,9 @@ LogDev& SourceMeter::GetLogFile(){
 
 void SourceMeter::Initialize(int masterUD, int pad){
 
-	this->_LogFile.Initialize("SourceMeter");
+	stringstream ss;
+	ss << "SourceMeter_" << pad;
+	this->_LogFile.Initialize(ss.str().c_str());
 
 	cout << "START SourceMeter::Initialize" << endl;
 	cout << "-----------------------------" << endl;
